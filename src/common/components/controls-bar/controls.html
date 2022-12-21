@@ -1,0 +1,11 @@
+<template>
+    <require from="./controls.css"></require>
+
+    <div id="top-controls">
+        <button click.trigger="i()">inpect</button>
+        <button click.trigger="filter()" disabled.bind="isFilterDisabled" if.bind="!!filter">filter</button>
+        <button click.trigger="add()" disabled.bind="isAddDisabled" if.bind="!!add">add</button>
+        <button click.trigger="remove()" disabled.bind="rdisabled" if.bind="!!remove">remove</button>
+        <button click.trigger="edit()" disabled.bind="edisabled" if.bind="!!edit">edit</button>
+    </div>
+</template>

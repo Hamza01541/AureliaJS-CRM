@@ -1,0 +1,15 @@
+<template>
+    <div>
+        <h2>Add comment</h2>
+        <div>
+            <input
+                name=""
+                type="text"
+                value.bind="form.context.content"
+                class.bind="form.context.isInvalid ? 'invalid' : ''"
+                focusout.trigger="validateField('context')"
+            >
+        </div>
+        <button click.trigger="runValidation() submitIfValid()">Save</button>
+    </div>
+</template>

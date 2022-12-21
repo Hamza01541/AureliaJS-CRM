@@ -1,0 +1,39 @@
+<template>
+    <require from="../../../common/components/top-bar/bar"></require>
+    <require from="../../../common/components/grids/grid-contacts"></require>
+    <require from="../../../common/components/grids/grid-orders"></require>
+    <require from="../../../common/components/grids/grid-invoices"></require>
+    <require from="../../../common/components/length-counter/length-counter"></require>
+    <require from="../../../common/forms/modify/form-modify-quote"></require>
+    <require from="../../../common/components/grids/grid-comments"></require>
+
+
+    <top-bar title="Quote details"></top-bar>
+    <form-modify-quote></form-modify-quote>
+    <!-- <grid-comments></grid-comments> -->
+
+    <div>
+        <length-counter 
+            click.delegate="toggleGrid('contacts')"
+            title="Contacts" 
+            targetname="contacts"
+        ></length-counter>
+        <grid-contacts show.bind="isGridShown.contacts"></grid-contacts>
+    </div>
+    <div>
+        <length-counter 
+            click.delegate="toggleGrid('orders')"
+            title="Orders" 
+            targetname="orders"
+        ></length-counter>
+        <grid-orders show.bind="isGridShown.orders"></grid-orders>
+    </div>
+    <div>
+        <length-counter 
+            click.delegate="toggleGrid('invoices')"
+            title="Invoices" 
+            targetname="invoices"
+        ></length-counter>
+    <grid-invoices show.bind="isGridShown.invoices"></grid-invoices>
+    </div>
+</template>

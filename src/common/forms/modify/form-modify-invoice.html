@@ -1,0 +1,54 @@
+<template>
+    <require from="../../components/controls-bar/controls"></require>
+    <div>
+        <controls-bar 
+            edit.call="isEditing = true"
+            edisabled.bind="!isFetched"
+            i.call="inspect()"
+        ></controls-bar>
+
+        <div class="modify-form">
+            <input
+                name="name"
+                type="text"
+                value.bind="form.name.content"
+                class.bind="form.name.isInvalid ? 'invalid' : ''"
+                disabled.bind="!isEditing"
+                focusout.trigger="validateField('name')"
+            >
+            <div>
+                <span>customer</p>
+                <a 
+                    click.delegate="goToDetailsIfReady('customer')"
+                    class.bind="isEditing ? 'plain' : 'link'"
+                >${store.context.customer.accountName}</a>
+            </div>
+            <div>
+                <span>opportunity</p>
+                    <a 
+                        click.delegate="goToDetailsIfReady('opportunity')"
+                        class.bind="isEditing ? 'plain' : 'link'"
+                >${store.context.opportunity.name}</a>
+            </div>
+            <div>
+                <span>quote</p>
+                <a 
+                    click.delegate="goToDetailsIfReady('quote')"
+                    class.bind="isEditing ? 'plain' : 'link'"  
+                >${store.context.quote.name}</a>
+            </div>
+            <div>
+                <span>order</p>
+                <a 
+                    click.delegate="goToDetailsIfReady('order')"
+                    class.bind="isEditing ? 'plain' : 'link'"
+                >${store.context.order.name}</a>
+            </div>
+        </div>
+
+        <div>
+            <button if.bind="isEditing" click.trigger="runValidation() submitIfValid()">Save</button>
+            <button if.bind="isEditing" click.trigger="cancelEditing()">Cancel</button>
+        </div>
+    </div>
+</template>

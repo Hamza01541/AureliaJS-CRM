@@ -1,0 +1,72 @@
+<template>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                <h2>Add TASK</h2>
+                <div>
+                    <input type="text" value.bind="form.name.content" placeholder="Task name..." class.bind="form.name.isInvalid && form.name.isInvalid ? 'invalid' : ''"
+                        focusout.trigger="validateField('name')">
+                </div>
+                <div>
+                    <label>Start:</label>
+                    <abp-datetime-picker id="dpId1" value.bind="form.startDate.content"></abp-datetime-picker>
+                </div>
+                <div>
+                    <label>End:</label>
+                    <abp-datetime-picker id="dpId2" value.bind="form.endDate.content"></abp-datetime-picker>
+                </div>
+
+                <div>
+                    <select value.bind="form.realisationBy.content">
+                        <option model.bind="null">Realisation by...</option>
+                        <option repeat.for="item of form.realisationBy.options" value.bind="item.name">${item.name}</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <select value.bind="form.type.content">
+                    <option model.bind="null">Type(Phone,Meeting etc...)</option>
+                    <option repeat.for="item of form.type.options" value.bind="item.name">${item.name}</option>
+                </select>
+            </div>
+
+            <div>
+                <select value.bind="form.inProgress.content">
+                    <option model.bind="null">IN PROGRESS</option>
+                    <option repeat.for="item of form.inProgress.options" value.bind="item.name">${item.name}</option>
+                </select>
+            </div>
+
+            <div>
+                <select value.bind="form.customers.content">
+                    <option model.bind="null">Customer...</option>
+                    <option repeat.for="item of form.customers.options" value.bind="item.name">${item.name}</option>
+                </select>
+            </div>
+
+            <div>
+                <select value.bind="form.contacts.content">
+                    <option model.bind="null">Contact...</option>
+                    <option repeat.for="item of form.contacts.options" value.bind="item.firstName">${item.firstName}</option>
+                </select>
+            </div>
+
+            <div>
+                <select value.bind="form.comments.content">
+                    <option model.bind="null">Comment...</option>
+                    <option repeat.for="item of form.comments.options" value.bind="item.comment">${item.comment}</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+    <button click.trigger="runValidation() submitIfValid()">Save</button>
+</template>

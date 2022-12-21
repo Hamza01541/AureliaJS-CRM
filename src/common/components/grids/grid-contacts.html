@@ -1,0 +1,55 @@
+<template>
+    <require from="../../../common/components/controls-bar/controls"></require>
+
+    <controls-bar 
+        remove.call="removeSelected()" 
+        rdisabled.bind="isAllDeselected" 
+        add.call="launchAddModal()"
+        i.call="inspect()"
+    ></controls-bar>
+
+    <table class="table table-striped" aurelia-table="
+        data.bind: elements; 
+        display-data.bind: $displayData;
+        current-page.bind: currentPage; 
+        page-size.bind: pageSize; 
+        total-items.bind: totalItems;
+    ">
+        <thead>
+            <tr>
+                <th aut-sort="key: name">Name|Address</th>
+                <th>Phone number</th>
+                <th aut-sort="key: email">Email</th>
+                <th aut-sort="key: position">Position</th>
+                <th aut-sort="custom.bind: dateSort">Last Activity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr 
+                repeat.for="contact of $displayData" 
+                aut-select="row.bind: contact; mode: single; selected-class: info" 
+                select.delegate="setLastSelected($event.detail.row)"
+                dblclick.delegate="goToLastSelected()"
+            >
+                <td>${contact.name}</td>
+                <td>
+                    ${contact.$phoneNumbers[0]}
+                    ${contact.$phoneNumbers[1]}
+                    ${contact.$phoneNumbers[2]}
+                </td>
+                <td>${contact.email}</td>
+                <td>${contact.position}</td>
+                <td>${contact.$lastActivity}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <aut-pagination 
+        current-page.bind="currentPage" 
+        page-size.bind="pageSize" 
+        total-items.bind="totalItems" 
+        pagination-size.bind="5"
+        boundary-links.bind="true">
+    </aut-pagination>
+
+</template>

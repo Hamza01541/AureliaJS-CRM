@@ -1,0 +1,63 @@
+<template>
+    <require from="../../../common/components/top-bar/bar"></require>
+    <require from="../../../common/components/grids/grid-contacts"></require>
+    <require from="../../../common/components/grids/grid-opportunities"></require>
+    <require from="../../../common/components/grids/grid-quotes"></require>
+    <require from="../../../common/components/grids/grid-orders"></require>
+    <require from="../../../common/components/grids/grid-invoices"></require>
+    <require from="../../../common/components/length-counter/length-counter"></require>
+    <require from="../../../common/forms/modify/form-modify-contact"></require>
+    <require from="../../../common/components/grids/grid-comments"></require>
+
+    <top-bar title="Contact details"></top-bar>
+    <form-modify-contact></form-modify-contact>
+    
+    <div>
+        <length-counter 
+            click.delegate="toggleGrid('comments')"
+            title="Comments" 
+            targetname="comments"
+        ></length-counter>
+        <grid-comments show.bind="isGridShown.contacts"></grid-comments>
+    </div>
+    <div>
+        <length-counter 
+            click.delegate="toggleGrid('contacts')"
+            title="Contacts" 
+            targetname="contacts"
+        ></length-counter>
+        <grid-contacts show.bind="isGridShown.contacts"></grid-contacts>
+    </div>
+    <div>
+        <length-counter 
+            click.delegate="toggleGrid('opportunities')"
+            title="Opportunities" 
+            targetname="opportunities"
+        ></length-counter>
+        <grid-opportunities show.bind="isGridShown.opportunities"></grid-opportunities>
+    </div>
+    <div>
+        <length-counter 
+            click.delegate="toggleGrid('quotes')"
+            title="Quotes" 
+            targetname="quotes"
+        ></length-counter>
+        <grid-quotes show.bind="isGridShown.quotes"></grid-quotes>
+    </div>
+    <div>
+        <length-counter 
+            click.delegate="toggleGrid('orders')"
+            title="Orders" 
+            targetname="orders"
+        ></length-counter>
+        <grid-orders show.bind="isGridShown.orders"></grid-orders>
+    </div>
+    <div>
+        <length-counter 
+            click.delegate="toggleGrid('invoices')"
+            title="Invoices" 
+            targetname="invoices"
+        ></length-counter>
+        <grid-invoices show.bind="isGridShown.invoices"></grid-invoices>
+    </div>
+</template>

@@ -1,0 +1,9 @@
+#navlist {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+#nav-text:active {
+    color: red;
+}

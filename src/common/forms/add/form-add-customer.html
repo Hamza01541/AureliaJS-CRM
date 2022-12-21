@@ -1,0 +1,109 @@
+<template>
+    <div>
+        <h2>Add customer</h2>
+        <div>
+            <input
+                name=""
+                type="text"
+                value.bind="form.accountName.content"
+                class.bind="form.accountName.isInvalid ? 'invalid' : ''"
+                focusout.trigger="validateField('accountName')"
+            >
+            <select 
+                value.bind="form.industry.content"
+                class.bind="form.industry.isInvalid ? 'invalid' : ''"
+            >
+                <option model.bind="form.industry.options[0]">${form.industry.options[0]}</option>
+                <option model.bind="form.industry.options[1]">${form.industry.options[1]}</option>
+                <option model.bind="form.industry.options[2]">${form.industry.options[2]}</option>
+            </select>
+            <input
+                name=""
+                type="text" 
+                value.bind="form.street.content" 
+                class.bind="form.street.isInvalid ? 'invalid' : ''"
+                focusout.trigger="validateField('street')"
+            >
+            <input
+                name=""
+                type="text" 
+                value.bind="form.zipCode.content" 
+                class.bind="form.zipCode.isInvalid ? 'invalid' : ''"
+                focusout.trigger="validateField('zipCode')"
+            >
+            <input 
+                name=""
+                type="text" 
+                value.bind="form.city.content" 
+                class.bind="form.city.isInvalid ? 'invalid' : ''"
+                focusout.trigger="validateField('city')"
+            >
+            <input 
+                name=""
+                type="text" 
+                value.bind="form.country.content" 
+                class.bind="form.country.isInvalid ? 'invalid' : ''"
+                focusout.trigger="validateField('country')"
+            >          
+            <input 
+                name=""
+                type="text" 
+                value.bind="form.region.content" 
+                class.bind="form.region.isInvalid ? 'invalid' : ''"
+                focusout.trigger="validateField('region')"
+            >          
+            <input 
+                name=""
+                type="text" 
+                value.bind="form.webSite.content" 
+                class.bind="form.webSite.isInvalid ? 'invalid' : ''"
+                focusout.trigger="validateField('webSite')"
+            >
+            <div>
+                    <input 
+                        type="text" 
+                        value.bind="form.phone1.content" 
+                        class.bind="form.phone1.isInvalid ? 'invalid' : ''"
+                    >
+                    <button click.trigger="addPhoneField()">+</button>
+            </div>
+            <div if.bind="!form.phone2.isExcluded">
+                <input 
+                    type="text" 
+                    value.bind="form.phone2.content" 
+                    class.bind="form.phone2.isInvalid ? 'invalid' : ''"
+                >
+                <button click.trigger="removePhoneField2()">-</button>
+            </div>
+            <div if.bind="!form.phone3.isExcluded">
+                <input 
+                    type="text" 
+                    value.bind="form.phone3.content" 
+                    class.bind="form.phone3.isInvalid ? 'invalid' : ''"
+                >
+                <button click.trigger="removePhoneField3()">-</button>
+            </div>
+            <input 
+                type="text" 
+                value.bind="form.numberEmployees.content" 
+                class.bind="form.numberEmployees.isInvalid ? 'invalid' : ''"
+            >
+            <input 
+                type="text" 
+                value.bind="form.areaActivity.content" 
+                class.bind="form.areaActivity.isInvalid ? 'invalid' : ''"
+            >
+            <input 
+                type="text" 
+                value.bind="form.marketSegment.content" 
+                class.bind="form.marketSegment.isInvalid ? 'invalid' : ''"
+            >
+            <input 
+                type="textarea" 
+                value.bind="form.description.content"
+                class.bind="form.description.isInvalid ? 'invalid' : ''"
+            >
+        </div>
+        <button click.trigger="runValidation() submitIfValid()">Save</button>
+    </div>
+</template>

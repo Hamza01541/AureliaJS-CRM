@@ -1,0 +1,47 @@
+<template>
+
+    <require from="../../../common/components/top-bar/bar"></require>
+    <require from="../../../common/components/grids/grid-calendars"></require>
+    <top-bar title="Calendar"></top-bar>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <grid-calendars></grid-calendars>
+            <div>
+                <div class="row">
+                    <div repeat.for="task of currentTasks">
+                        <span click.delegate="getSelectedTask(task.id)">
+                            <div class="col-sm-6">
+                                ${task.comment}
+                            </div>
+                            <div class="col-sm-6">
+                                <span>${task.dateStart.slice(11,16)}
+                                    <br> ${task.dateStart.slice(0,10)}
+                                </span>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div if.bind="selectedTask">
+                <span>${selectedTask.type} ${selectedTask.inProgress}</span>
+                <br>
+                <span>
+                    ${selectedTask.dateStart.slice(11,16)}
+                    <br> ${selectedTask.dateStart.slice(0,10)}
+                </span>
+                <br>
+                <span>
+                    - ${selectedTask.dueDate.slice(11,16)}
+                    <br> ${selectedTask.dueDate.slice(0,10)}
+                </span>
+                <br>
+                <h1>${selectedTask.taskName}</h1>
+            </div>
+        </div>
+    </div>
+
+</template>

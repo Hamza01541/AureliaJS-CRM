@@ -1,0 +1,74 @@
+<template>
+    <require from="../../components/controls-bar/controls"></require>
+    <div>
+        <controls-bar 
+            edit.call="isEditing = true"
+            edisabled.bind="!isFetched"
+            i.call="inspect()"
+        ></controls-bar>
+
+        <div class="modify-form">
+            <input
+                name="name"
+                type="text"
+                value.bind="form.name.content"
+                class.bind="form.name.isInvalid ? 'invalid' : ''"
+                disabled.bind="!isEditing"
+                focusout.trigger="validateField('name')"
+            >
+            <div>
+                <span>customer</p>
+                <a 
+                    click.delegate="goToDetailsIfReady('customer')"
+                    class.bind="isEditing ? 'plain' : 'link'"
+                >${store.context.customer.accountName}</a>
+            </div>
+            <div>
+                <span>opportunity</p>
+                    <a 
+                        click.delegate="goToDetailsIfReady('opportunity')"
+                        class.bind="isEditing ? 'plain' : 'link'"
+                >${store.context.opportunity.name}</a>
+            </div>
+            <abp-datetime-picker
+                element.bind="pickera"
+                options.bind="{ format: 'YYYY-MM-DD' }"
+            ></abp-datetime-picker>
+            <abp-datetime-picker
+                element.bind="pickerb"
+                options.bind="{ format: 'YYYY-MM-DD' }"
+            ></abp-datetime-picker>
+            <abp-datetime-picker
+                element.bind="pickerc"
+                options.bind="{ format: 'YYYY-MM-DD' }"
+            ></abp-datetime-picker>
+            <select
+                disabled.bind="!isEditing"
+                value.bind="form.currency.content"
+            >
+                <option model.bind="''">Choose...</option>
+                <option repeat.for="currency of form.currency.options" model.bind="currency">
+                    ${currency}
+                </option>
+            </select>
+            <select disabled.bind="!isEditing" value.bind="form.quoteStatus.content">
+                <option model.bind="''">Choose...</option>
+                <option repeat.for="quoteStatus of form.quoteStatus.options" model.bind="quoteStatus">
+                    ${quoteStatus}
+                </option>
+            </select>
+            <input type="text"
+                disabled.bind="!isEditing"
+                type="text"
+                value.bind="form.amount.content"
+                class.bind="form.amount.isInvalid && form.amount.isInvalid ? 'invalid' : ''"
+                focusout.trigger="validateField('amount')"
+            >
+        </div>
+
+        <div>
+            <button if.bind="isEditing" click.trigger="runValidation() submitIfValid()">Save</button>
+            <button if.bind="isEditing" click.trigger="cancelEditing()">Cancel</button>
+        </div>
+    </div>
+</template>

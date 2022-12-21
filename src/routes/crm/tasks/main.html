@@ -1,0 +1,52 @@
+<template>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+
+    <require from="../../../common/components/top-bar/bar"></require>
+    <require from="../../../common/components/grids/grid-tasks"></require>
+
+    <top-bar title="Tasks"></top-bar>
+    <div class="row">
+        <div class="col-sm-4">
+            <grid-tasks></grid-tasks>
+            Grid will be displayed here
+            <div>
+                <div class="row">
+                    <div repeat.for="task of elements">
+                        <span click.delegate="getSelectedTask(task.id)">
+                            <div class="col-sm-6">
+                                ${task.comment}
+                            </div>
+                            <div class="col-sm-6">
+                                <span>${task.dateStart.slice(11,16)}
+                                    <br> ${task.dateStart.slice(0,10)}
+                                </span>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div if.bind="selectedTask">
+                <span>${selectedTask.type} ${selectedTask.inProgress}</span>
+                <br>
+                <span>
+                    ${selectedTask.dateStart.slice(11,16)}
+                    <br> ${selectedTask.dateStart.slice(0,10)}
+                </span>
+                <br>
+                <span>
+                    - ${selectedTask.dueDate.slice(11,16)}
+                    <br> ${selectedTask.dueDate.slice(0,10)}
+                </span>
+                <br>
+                <h1>${selectedTask.taskName}</h1>
+            </div>
+        </div>
+    </div>
+
+</template>

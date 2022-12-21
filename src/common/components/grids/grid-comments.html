@@ -1,0 +1,37 @@
+<template>
+    <require from="../../../common/components/controls-bar/controls"></require>
+
+    <controls-bar 
+        remove.call="removeSelected()" 
+        rdisabled.bind="isAllDeselected" 
+        add.call="launchAddModal()"
+        i.call="inspect()"
+    ></controls-bar>
+
+    <table class="table table-striped" aurelia-table="
+        data.bind: elements; 
+        display-data.bind: $displayData;
+        current-page.bind: currentPage; 
+        page-size.bind: pageSize; 
+        total-items.bind: totalItems;
+    ">
+        <tbody>
+            <tr 
+                repeat.for="expense of $displayData" 
+                aut-select="row.bind: expense; mode: single; selected-class: info" 
+                select.delegate="setLastSelected($event.detail.row)"
+            >
+                <td>${comment.context}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <aut-pagination 
+        current-page.bind="currentPage" 
+        page-size.bind="pageSize" 
+        total-items.bind="totalItems" 
+        pagination-size.bind="5"
+        boundary-links.bind="true">
+    </aut-pagination>
+
+</template>

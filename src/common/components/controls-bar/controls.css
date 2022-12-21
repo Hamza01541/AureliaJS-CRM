@@ -1,0 +1,6 @@
+#top-controls {
+    display: flex;
+    justify-content: right;
+    background-color: rgb(245,245,245);
+    height: 50px;
+}

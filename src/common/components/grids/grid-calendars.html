@@ -1,0 +1,51 @@
+<template>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <require from="../../../common/components/controls-bar/controls"></require>
+    <require from="../../../routes/crm/calendar/main.css"></require>
+
+    <style type="text/css">
+        .fc-highlight {
+            /* selected cell */
+            background: lawngreen;
+            opacity: .6;
+        }
+
+        .fc-unthemed td.fc-today {
+            /* today cell */
+            background: lawngreen;
+        }
+
+        .fc th,
+        .fc td {
+            /* hides borders of cells  */
+            border-style: none;
+            border-width: none;
+        }
+
+        .fc-time,
+        .fc-day-grid-event {
+            /* (.fc-time) hides time in -eventcell */
+            /* (.fc-day-grid-event) hides events on cell */
+            display: none;
+        }
+
+        .fc-title {
+            color: black;
+        }
+
+        .fc-bgevent {
+            opacity: none;
+            background: green;
+        }
+    </style>
+
+    <controls-bar i.call="inspect()" add.call="launchAddModal()" edit.call="launchAddModal()" edisabled.bind="isAllDeselected"
+        remove.call="removeSelected()" rdisabled.bind="isAllDeselected">
+    </controls-bar>
+
+    <div id='calendar'></div>
+</template>

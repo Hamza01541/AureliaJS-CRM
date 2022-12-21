@@ -1,0 +1,17 @@
+<template>
+    <require from="./common/components/navmenu/navmenu.html"></require>
+    <require from="./common/components/modal-handler/handler"></require>
+    <require from="./app.css"></require>
+    
+    <div id="root-container">
+        <div id="navmenu-container">
+            <navmenu router.bind="router"></navmenu>
+        </div>
+    
+        <div id="view-container">
+            <router-view></router-view>
+        </div>
+
+        <modal-handler></modal-handler>
+    </div>
+</template>

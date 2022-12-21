@@ -1,0 +1,50 @@
+<template>
+    <require from="../../../common/components/controls-bar/controls"></require>
+
+    <controls-bar 
+        remove.call="removeSelected()" 
+        rdisabled.bind="isAllDeselected" 
+        add.call="launchAddModal()">
+    </controls-bar>
+
+    <table class="table table-striped" aurelia-table="
+        data.bind: elements; 
+        display-data.bind: $displayData;
+        current-page.bind: currentPage; 
+        page-size.bind: pageSize; 
+        total-items.bind: totalItems;
+    ">
+        <thead>
+            <tr>
+                <th aut-sort="key: name">Name</th>
+                <th aut-sort="custom.bind: dateSort">Offer Date</th>
+                <th aut-sort="custom.bind: dateSort">Sign Date</th>
+                <th aut-sort="key: amount">Amount</th>
+                <th aut-sort="key: status">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr 
+                repeat.for="order of $displayData" 
+                aut-select="row.bind: order; mode: single; selected-class: info" 
+                select.delegate="setLastSelected($event.detail.row)"
+                dblclick.delegate="goToLastSelected()"
+            >
+                <td>${order.name}</td>
+                <td>${order.$offerDate}</td>
+                <td>${order.$signDate}</td>
+                <td>${order.amount}</td>
+                <td>${order.$status}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <aut-pagination 
+        current-page.bind="currentPage" 
+        page-size.bind="pageSize" 
+        total-items.bind="totalItems" 
+        pagination-size.bind="5"
+        boundary-links.bind="true">
+    </aut-pagination>
+
+</template>

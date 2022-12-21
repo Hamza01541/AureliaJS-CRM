@@ -1,0 +1,62 @@
+<template>
+    <div>
+        <h2>Add project</h2>
+        <button click.delegate="inspect()">inspect</button>
+        <div>
+            <h3>Information</h3>
+            <div>
+                <input 
+                    type="text"
+                    value.bind="form.name.content"
+                    class.bind="form.name.isInvalid && form.name.isInvalid ? 'invalid' : ''"
+                    focusout.trigger="validateField('name')"
+                >
+                <select
+                    if.bind="currentState[0] > 'A'"
+                    value.bind="form.customer.content"
+                    change.delegate="goBackToCustomer() chooseCustomer()"
+                    disabled.bind="form.customer.isDisabled"
+                >
+                    <option model.bind="''">Choose...</option>
+                    <option repeat.for="customer of form.customer.options" model.bind="customer">
+                        ${customer.accountName}
+                    </option>
+                </select>
+                <select
+                    if.bind="currentState[0] > 'B'"
+                    value.bind="form.opportunity.content" 
+                    change.delegate="goBackToOpportunity() chooseOpportunity()"
+                    disabled.bind="form.opportunity.isDisabled"
+                >
+                    <option model.bind="''">Choose...</option>
+                    <option repeat.for="opportunity of form.opportunity.options" model.bind="opportunity">
+                        ${opportunity.name}
+                    </option>
+                </select>
+                <select 
+                    if.bind="currentState[0] > 'C'"
+                    value.bind="form.quote.content"
+                    change.delegate="goBackToQuote() chooseQuote()"
+                    disabled.bind="form.quote.isDisabled"
+                >
+                    <option model.bind="''">Choose...</option>
+                    <option repeat.for="quote of form.quote.options" model.bind="quote">
+                        ${quote.name}
+                    </option>
+                </select>
+                <select 
+                    if.bind="currentState[0] > 'D'"                    
+                    value.bind="form.order.content"
+                    change.delegate="chooseOrder()"
+                    disabled.bind="form.order.isDisabled"
+                >
+                    <option model.bind="''">Choose...</option>
+                    <option repeat.for="order of form.order.options" model.bind="order">
+                        ${order.name}
+                    </option>
+                </select>
+            </div>
+            <button click.trigger="runValidation() submitIfValid()">Save</button>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,27 @@
+<template bindable="router">
+    <require from="./navmenu.css"></require>
+
+    <div>
+        <span>flex-logo</span>
+    </div>
+
+    <div id="navlist">
+        <div repeat.for = "row of router.navigation" class="${ row.isActive ? 'link-active' : '' }" >
+            <a href.bind = "row.href">
+                <span class="glyphicon glyphicon-${ row.settings.icon }"></span> 
+                ${ row.title }
+            </a>
+        </div>
+    </div>
+    
+    <hr>
+
+    <div id="navlist">
+        <div repeat.for = "row of router.navigation">
+            <a href.bind = "row.href">
+                <img active.bind="row.isActive" href.bind="row.icon"></img> 
+                <p id="nav-text" active.bind="row.isActive">${ row.title }</p>
+            </a>
+        </div>
+    </div>
+</template>

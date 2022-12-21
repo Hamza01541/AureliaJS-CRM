@@ -1,0 +1,124 @@
+<template>
+        <require from="../../components/controls-bar/controls"></require>
+    <div>
+        <controls-bar 
+            edit.call="isEditing = true"
+            edisabled.bind="isEditing"
+        ></controls-bar>
+    </div>
+        <div class="modify-form">
+            <input
+                name="name"
+                type="text"
+                value.bind="form.name.content"
+                class.bind="form.name.isInvalid ? 'invalid' : ''"
+                disabled.bind="!isEditing"
+                focusout.trigger="validateField('name')"
+            >
+            <div>
+                <span>customer</p>
+                <a 
+                    click.delegate="goToDetailsIfReady('customer')"
+                    class.bind="isEditing ? 'plain' : 'link'"
+                >${store.context.customer.accountName}</a>
+            </div>
+            <input 
+                type="text" 
+                value.bind="form.email.content" 
+                class.bind="form.email.isInvalid ? 'invalid' : ''"
+                disabled.bind="!isEditing"
+                focusout.trigger="validateField('email')"
+            >
+            <div>
+                <input 
+                    type="text" 
+                    value.bind="form.phone1.content" 
+                    class.bind="form.phone1.isInvalid ? 'invalid' : ''"
+                    disabled.bind="!isEditing"
+                    focusout.trigger="validateField('phone1')"
+                >
+                <button disabled.bind="!isEditing" click.trigger="addPhoneField()">+</button>
+            </div>
+            <div if.bind="!form.phone2.isExcluded">
+                <input 
+                    type="text" 
+                    value.bind="form.phone2.content" 
+                    class.bind="form.phone2.isInvalid ? 'invalid' : ''"
+                    disabled.bind="!isEditing"
+                    focusout.trigger="validateField('phone2')"
+                >
+                <button disabled.bind="!isEditing" click.trigger="removePhoneField2()">-</button>
+            </div>
+            <div if.bind="!form.phone3.isExcluded">
+                <input 
+                    type="text" 
+                    value.bind="form.phone3.content" 
+                    class.bind="form.phone3.isInvalid ? 'invalid' : ''"
+                    disabled.bind="!isEditing"
+                    focusout.trigger="validateField('phone3')"
+                >
+                <button disabled.bind="!isEditing" click.trigger="removePhoneField3()">-</button>
+            </div>
+            <input 
+                type="text" 
+                value.bind="form.department.content" 
+                class.bind="form.department.isInvalid ? 'invalid' : ''"
+                disabled.bind="!isEditing"
+                focusout.trigger="validateField('department')"
+            >
+            <input 
+                type="text" 
+                value.bind="form.position.content" 
+                class.bind="form.position.isInvalid ? 'invalid' : ''"
+                disabled.bind="!isEditing"
+                focusout.trigger="validateField('position')"
+            >
+            <input
+                type="text" 
+                value.bind="form.street.content" 
+                class.bind="form.street.isInvalid ? 'invalid' : ''"
+                disabled.bind="!isEditing"
+                focusout.trigger="validateField('street')"
+            >
+            <input 
+                type="text" 
+                value.bind="form.zipCode.content" 
+                class.bind="form.zipCode.isInvalid ? 'invalid' : ''"
+                disabled.bind="!isEditing"
+                focusout.trigger="validateField('zipCode')"
+            >
+            <input 
+                type="text" 
+                value.bind="form.city.content" 
+                class.bind="form.city.isInvalid ? 'invalid' : ''"
+                disabled.bind="!isEditing"
+                focusout.trigger="validateField('city')"
+            >
+            <input 
+                type="text" 
+                value.bind="form.country.content" 
+                class.bind="form.country.isInvalid ? 'invalid' : ''"
+                disabled.bind="!isEditing"
+                focusout.trigger="validateField('country')"
+            >
+            <input 
+                type="text" 
+                value.bind="form.region.content" 
+                class.bind="form.region.isInvalid ? 'invalid' : ''"
+                disabled.bind="!isEditing"
+                focusout.trigger="validateField('region')"
+            >
+            <input 
+                type="textarea" 
+                disabled.bind="!isEditing"
+                value.bind="form.description.content"
+                class.bind="form.description.isInvalid ? 'invalid' : ''"
+            >
+        </div>
+
+        <div>
+            <button if.bind="isEditing" click.trigger="runValidation() submitIfValid()">Save</button>
+            <button if.bind="isEditing" click.trigger="cancelEditing()">Cancel</button>
+        </div>
+    </div>
+</template>

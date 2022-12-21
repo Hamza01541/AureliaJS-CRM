@@ -1,0 +1,71 @@
+<template>
+    <div>
+        <h2>Add quote</h2>
+        <button click.delegate="inspect()">inspect</button>
+        <div>
+            <div>
+                <input 
+                    type="text"
+                    value.bind="form.name.content"
+                    class.bind="form.name.isInvalid && form.name.isInvalid ? 'invalid' : ''"
+                    focusout.trigger="validateField('name')"
+                >
+                <select
+                    if.bind="currentState[0] > 'A'"
+                    value.bind="form.customer.content"
+                    change.delegate="goBackToCustomer() chooseCustomer()"
+                    disabled.bind="form.customer.isDisabled"
+                >
+                    <option model.bind="''">Choose...</option>
+                    <option repeat.for="customer of form.customer.options" model.bind="customer">
+                        ${customer.accountName}
+                    </option>
+                </select>
+                <select
+                    if.bind="currentState[0] > 'B'"
+                    value.bind="form.opportunity.content" 
+                    change.delegate="goBackToOpportunity() chooseOpportunity()"
+                    disabled.bind="form.opportunity.isDisabled"
+                >
+                    <option model.bind="''">Choose...</option>
+                    <option repeat.for="opportunity of form.opportunity.options" model.bind="opportunity">
+                        ${opportunity.name}
+                    </option>
+                </select>
+                <abp-datetime-picker
+                    element.bind="pickera"
+                    options.bind="{ format: 'YYYY-MM-DD' }"
+                ></abp-datetime-picker>
+                <abp-datetime-picker
+                    element.bind="pickerb"
+                    options.bind="{ format: 'YYYY-MM-DD' }"
+                ></abp-datetime-picker>
+                <abp-datetime-picker
+                    element.bind="pickerc"
+                    options.bind="{ format: 'YYYY-MM-DD' }"
+                ></abp-datetime-picker>
+                <select
+                    value.bind="form.currency.content"
+                >
+                    <option model.bind="''">Choose...</option>
+                    <option repeat.for="currency of form.currency.options" model.bind="currency">
+                        ${currency}
+                    </option>
+                </select>
+                <input type="text"
+                    type="text"
+                    value.bind="form.amount.content"
+                    class.bind="form.amount.isInvalid && form.amount.isInvalid ? 'invalid' : ''"
+                    focusout.trigger="validateField('amount')"
+                >
+                <select value.bind="form.quoteStatus.content">
+                    <option model.bind="''">Choose...</option>
+                    <option repeat.for="status of form.quoteStatus.options" model.bind="status">
+                        ${status}
+                    </option>
+                </select>
+            </div>
+            <button click.trigger="runValidation() submitIfValid()">Save</button>
+        </div>
+    </div>
+</template>

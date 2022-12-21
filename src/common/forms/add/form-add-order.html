@@ -1,0 +1,82 @@
+<template>
+    <div>
+        <h2>Add order</h2>
+        <button click.delegate="inspect()">inspect</button>
+        <div>
+            <h3>Information</h3>
+            <div>
+                <input 
+                    type="text"
+                    value.bind="form.name.content"
+                    class.bind="form.name.isInvalid && form.name.isInvalid ? 'invalid' : ''"
+                    focusout.trigger="validateField('name')"
+                >
+                <select
+                    if.bind="currentState[0] > 'A'"
+                    value.bind="form.customer.content"
+                    change.delegate="goBackToCustomer() chooseCustomer()"
+                    disabled.bind="form.customer.isDisabled"
+                >
+                    <option model.bind="''">Choose...</option>
+                    <option repeat.for="customer of form.customer.options" model.bind="customer">
+                        ${customer.accountName}
+                    </option>
+                </select>
+                <select
+                    if.bind="currentState[0] > 'B'"
+                    value.bind="form.opportunity.content" 
+                    change.delegate="goBackToOpportunity() chooseOpportunity()"
+                    disabled.bind="form.opportunity.isDisabled"
+                >
+                    <option model.bind="''">Choose...</option>
+                    <option repeat.for="opportunity of form.opportunity.options" model.bind="opportunity">
+                        ${opportunity.name}
+                    </option>
+                </select>
+                <select 
+                    if.bind="currentState[0] > 'C'"
+                    value.bind="form.quote.content"
+                    change.delegate="goBackToQuote() chooseQuote()"
+                    disabled.bind="form.quote.isDisabled"
+                >
+                    <option model.bind="''">Choose...</option>
+                    <option repeat.for="quote of form.quote.options" model.bind="quote">
+                        ${quote.name}
+                    </option>
+                </select>
+                <abp-datetime-picker
+                    element.bind="pickera"
+                    options.bind="{ format: 'YYYY-MM-DD' }"
+                ></abp-datetime-picker>
+                <abp-datetime-picker
+                    element.bind="pickerb"
+                    options.bind="{ format: 'YYYY-MM-DD' }"
+                ></abp-datetime-picker>
+                <input type="checkbox"
+                    checked.bind="form.isBoardApproval.content"
+                    change.delegate="evaluateDatepickerShowStatus()"
+                >
+                <abp-datetime-picker
+                    show.bind="!form.boardApprovalDate.isExcluded"
+                    element.bind="pickerc"
+                    options.bind="{ format: 'YYYY-MM-DD' }"
+                ></abp-datetime-picker>
+                <select
+                    value.bind="form.currency.content"
+                >
+                    <option model.bind="''">Choose...</option>
+                    <option repeat.for="currency of form.currency.options" model.bind="currency">
+                        ${currency}
+                    </option>
+                </select>
+                <input type="text"
+                    type="text"
+                    value.bind="form.amount.content"
+                    class.bind="form.amount.isInvalid && form.amount.isInvalid ? 'invalid' : ''"
+                    focusout.trigger="validateField('amount')"
+                >
+            </div>
+            <button click.trigger="runValidation() submitIfValid()">Save</button>
+        </div>
+    </div>
+</template>

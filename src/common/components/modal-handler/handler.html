@@ -1,0 +1,67 @@
+<template>
+    <require from="../../../common/forms/add/form-add-customer"></require>
+    <require from="../../../common/forms/add/form-add-contact"></require>
+    <require from="../../../common/forms/add/form-add-opportunity"></require>
+    <require from="../../../common/forms/add/form-add-quote"></require>
+    <require from="../../../common/forms/add/form-add-order"></require>
+    <require from="../../../common/forms/add/form-add-invoice"></require>
+    <require from="../../../common/forms/add/form-add-project"></require>
+    <require from="../../../common/forms/add/form-add-comment"></require>
+    <require from="../../../common/forms/add/form-add-task"></require>
+ 
+    <div if.bind="currentModal === 'addTask'" class="modal-overlay">
+            <div class="modal-container">
+                <button click.trigger="exit()">X</button>
+                <form-add-task success.call="exit(payload)"></form-add-task>
+            </div>
+        </div>
+
+    <div if.bind="currentModal === 'addCustomer'" class="modal-overlay">
+        <div class="modal-container">
+            <button click.trigger="exit()">X</button>
+            <form-add-customer success.call="exit(payload)"></form-add-customer>
+        </div>
+    </div>
+    <div if.bind="currentModal === 'addContact'" class="modal-overlay">
+        <div class="modal-container">
+            <button click.trigger="exit()">X</button>
+            <form-add-contact success.call="exit(payload)"></form-add-contact>
+        </div>
+    </div>
+    <div if.bind="currentModal === 'addOpportunity'" class="modal-overlay">
+        <div class="modal-container">
+            <button click.trigger="exit()">X</button>
+            <form-add-opportunity success.call="exit(payload)"></form-add-opportunity>
+        </div>
+    </div>
+    <div if.bind="currentModal === 'addQuote'" class="modal-overlay">
+        <div class="modal-container">
+            <button click.trigger="exit()">X</button>
+            <form-add-quote success.call="exit(payload)"></form-add-quote>
+        </div>
+    </div>
+    <div if.bind="currentModal === 'addOrder'" class="modal-overlay">
+        <div class="modal-container">
+            <button click.trigger="exit()">X</button>
+            <form-add-order success.call="exit(payload)"></form-add-order>
+        </div>
+    </div>
+    <div if.bind="currentModal === 'addInvoice'" class="modal-overlay">
+        <div class="modal-container">
+            <button click.trigger="exit()">X</button>
+            <form-add-invoice success.call="exit(payload)"></form-add-invoice>
+        </div>
+    </div>
+    <div if.bind="currentModal === 'addProject'" class="modal-overlay">
+        <div class="modal-container">
+            <button click.trigger="exit()">X</button>
+            <form-add-project success.call="exit(payload)"></form-add-project>
+        </div>
+    </div>
+    <div if.bind="currentModal === 'addComment'" class="modal-overlay">
+        <div class="modal-container">
+            <button click.trigger="exit()">X</button>
+            <form-add-comment success.call="exit(payload)"></form-add-comment>
+        </div>
+    </div>
+</template>
